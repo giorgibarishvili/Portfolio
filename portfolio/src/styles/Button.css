@@ -1,0 +1,74 @@
+.btn-default{
+    position: relative;
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    padding: 10px 30px;
+    transition: 0.5s;
+    width: 200px;
+    color: #00FFFF;
+}
+
+.btn-default:hover{
+    letter-spacing: 0.25em;
+    background: var(--clr);
+    color: var(--clr);
+    box-shadow: 0 0 35px var(--clr);
+}
+
+.btn-default::before{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #27282c;
+}
+
+.btn-default span{
+    position: relative;
+    z-index: 1;
+}
+
+.btn-default {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.btn-default::before{
+    content: '';
+    position: absolute;
+    top: -3.5px;
+    left: 80%;
+    width: 10px;
+    height: 5px;
+    border: 2px solid var(--clr);
+    background: #27282c;
+    transform: translateX(-50%);
+    transition: 0.5s;
+}
+
+.btn-default:hover::before{
+    width: 20px;
+    left: 20%;
+}
+
+.btn-default::after{
+    content: '';
+    position: absolute;
+    bottom: -3.5px;
+    left: 20%;
+    width: 10px;
+    height: 5px;
+    border: 2px solid var(--clr);
+    background: #27282c;
+    transform: translateX(-50%);
+    transition: 0.5s;
+}
+
+.btn-default:hover::after{
+    width: 20px;
+    left: 80%;
+}
