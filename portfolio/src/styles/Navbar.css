@@ -10,3 +10,18 @@
     z-index: 999;
     color: black;
   }
+.github-link svg {
+    width: 50px; /* Adjust as needed */
+    height: 48px; /* Adjust as needed */
+    aspect-ratio: 1;
+    outline: 50px solid rgba(0, 0, 0, 0.5);
+    outline-offset: -50px;
+    cursor: pointer;
+    transition: outline 0.3s, outline-offset 0.3s; /* Ensure transition properties are correct */
+    border-radius: 70px;
+}
+
+.github-link svg:hover {
+    outline: 8px solid rgb(255, 255, 255);
+    outline-offset: 15px;
+}

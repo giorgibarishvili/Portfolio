@@ -1,4 +1,4 @@
-.btn-default{
+.btn-default {
     position: relative;
     background: #444;
     color: #fff;
@@ -9,66 +9,69 @@
     padding: 10px 30px;
     transition: 0.5s;
     width: 200px;
-    color: #00FFFF;
+    border-radius: 50px; /*mrgvali*/
+    /* border: none;
+    cursor: pointer; */
 }
 
-.btn-default:hover{
+.btn-default:hover {
     letter-spacing: 0.25em;
-    background: var(--clr);
-    color: var(--clr);
-    box-shadow: 0 0 35px var(--clr);
+    background: red;
+    color: white;
+    box-shadow: 0 0 35px red;
 }
 
-.btn-default::before{
+.btn-default::before {
+    border-radius: 50px; /*mrgvali*/
     content: '';
     position: absolute;
     inset: 2px;
     background: #27282c;
 }
 
-.btn-default span{
+.btn-default span {
     position: relative;
     z-index: 1;
 }
 
-.btn-default {
+.btn-default i {
     position: absolute;
     inset: 0;
     display: block;
 }
 
-.btn-default::before{
+.btn-default i::before {
     content: '';
     position: absolute;
     top: -3.5px;
     left: 80%;
     width: 10px;
     height: 5px;
-    border: 2px solid var(--clr);
+    border: 2px solid red;
     background: #27282c;
     transform: translateX(-50%);
     transition: 0.5s;
 }
 
-.btn-default:hover::before{
+.btn-default:hover i::before {
     width: 20px;
     left: 20%;
 }
 
-.btn-default::after{
+.btn-default i::after {
     content: '';
     position: absolute;
     bottom: -3.5px;
     left: 20%;
     width: 10px;
     height: 5px;
-    border: 2px solid var(--clr);
+    border: 2px solid red;
     background: #27282c;
     transform: translateX(-50%);
     transition: 0.5s;
 }
 
-.btn-default:hover::after{
+.btn-default:hover i::after {
     width: 20px;
     left: 80%;
 }
