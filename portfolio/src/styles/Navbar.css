@@ -1,8 +1,15 @@
+/*
+red: #ec6b5b 
+dark: 3a3f59
+orange: #f9ad66
+light: ede6ce
+*/
 .navbar {
-    background:  rgba(0, 255, 255, 0.4);
+    background:  #3a3f59;
     height: 80px;
     display: flex;
-    justify-content: center;
+    /* justify-content: space-between; */
+    /* justify-content: center; */
     align-items: center;
     font-size: 1.2rem;
     position: relative;
@@ -11,17 +18,17 @@
     color: black;
   }
 .github-link svg {
-    width: 50px; /* Adjust as needed */
-    height: 48px; /* Adjust as needed */
+    width: 48px;
+    height: 48px;
     aspect-ratio: 1;
-    outline: 50px solid rgba(0, 0, 0, 0.5);
-    outline-offset: -50px;
+    outline: 30px solid rgba(0, 0, 0, 0.5);
+    outline-offset: -30px;
     cursor: pointer;
-    transition: outline 0.3s, outline-offset 0.3s; /* Ensure transition properties are correct */
-    border-radius: 70px;
+    transition: outline 0.3s, outline-offset 0.3s;
+    border-radius: 50px;
 }
 
 .github-link svg:hover {
     outline: 8px solid rgb(255, 255, 255);
-    outline-offset: 15px;
+    outline-offset: 5px;
 }
