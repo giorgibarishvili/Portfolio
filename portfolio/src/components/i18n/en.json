@@ -1,3 +1,5 @@
 {
-    "language": "Lang"
+  "language": "Lang",
+  "greetings": "Hi, I am Giorgi Barishvili.",
+  "description": "A Front-End Developer who is passionate about building user friendly interfaces for the web."
 }

@@ -5,6 +5,7 @@ import i18n from "./i18n/i18n";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as GithubLogo } from "../images/github-mark-white.svg";
 import { ReactComponent as Linkedin } from "../images/icons8-linkedin.svg";
+import { useEffect } from "react";
 function Navbar() {
   const { t } = useTranslation();
   const [lang, setLang] = useState("en");
@@ -14,11 +15,18 @@ function Navbar() {
     i18n.changeLanguage(newLang);
   }
 
+  const [itsOn, setItsOn] = useState(false);
+  useEffect(() => {
+    console.log(itsOn);
+  }, [itsOn]);
+
   return (
     <div className="navbar container-fluid">
       <div className="ms-5">
-        <Button className="me-3">Home</Button>
-        <Button className="me-3">About</Button>
+        <Button className="me-3" onClick={() => setItsOn(!itsOn)}>
+          Home
+        </Button>
+        {itsOn && <Button className="me-3">About</Button>}
         <Button className="me-3">Projects</Button>
       </div>
       <div className="asd me-5">
