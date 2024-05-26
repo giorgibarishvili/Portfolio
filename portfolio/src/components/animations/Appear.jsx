@@ -12,7 +12,7 @@ const Appear = ({ children, width = "fit-content" }) => {
       textControls.start("visible");
       slideControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, textControls, slideControls]);
   return (
     <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>
       <motion.div
