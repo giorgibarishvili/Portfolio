@@ -1,8 +1,16 @@
 .main {
-    padding: 0;
+  padding: 0;
 }
-.who-am-i{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.who-am-i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  width: 500px;
+  height: 200px !important;
 }
