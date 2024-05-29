@@ -5,6 +5,7 @@ import i18n from "./i18n/i18n";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as GithubLogo } from "../images/github-mark-white.svg";
 import { ReactComponent as Linkedin } from "../images/icons8-linkedin.svg";
+import { Link } from "react-router-dom";
 function Navbar() {
   const { t } = useTranslation();
   const [lang, setLang] = useState("en");
@@ -13,20 +14,39 @@ function Navbar() {
     setLang(newLang);
     i18n.changeLanguage(newLang);
   }
+  const [activeButton, setActiveButton] = useState("home");
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
 
   // const [itsOn, setItsOn] = useState(false);
 
   return (
     <div className="navbar container-fluid">
       <div className="ms-5">
+        <Link to="/">
+          <Button
+            className={`me-3 ${activeButton === "home" ? "active" : ""}`}
+            onClick={() => handleButtonClick("home")}
+            // onClick={() => setItsOn(!itsOn)}
+          >
+            Home
+          </Button>
+        </Link>
+        <Link to="/About">
+          <Button
+            className={`me-3 ${activeButton === "about" ? "active" : ""}`}
+            onClick={() => handleButtonClick("about")}
+          >
+            About
+          </Button>
+        </Link>
         <Button
-          className="me-3"
-          // onClick={() => setItsOn(!itsOn)}
+          className={`me-3 ${activeButton === "projects" ? "active" : ""}`}
+          onClick={() => handleButtonClick("projects")}
         >
-          Home
+          Projects
         </Button>
-        <Button className="me-3">About</Button>
-        <Button className="me-3">Projects</Button>
       </div>
       <div className="asd me-5">
         <Button onClick={changeBetweenLanguages}>{t("language")}</Button>

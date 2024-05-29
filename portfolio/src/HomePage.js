@@ -14,8 +14,8 @@ function HomePage() {
   return (
     <div className="container main">
       {/* <EmblaCarousel /> */}
-      <div className="who-am-i mt-5">
-        <div style={{ maxWidth: "652px" }}>
+      <div className="who-am-i mt-5 mb-5">
+        <div className="greetings">
           <Appear>
             {t("greetings")}
             <br />
@@ -27,7 +27,10 @@ function HomePage() {
         </Reveal>
       </div>
       <div className="form d-flex">
-        <div className="me-5">
+        <div
+          className="me-5 align-items-center d-flex"
+          //aq gavcherdi
+        >
           lets connect <br />
           my email is asdas@aSd,.asr
         </div>
@@ -42,6 +45,7 @@ function HomePage() {
                 placeholder="Input"
                 onChange={(e) => setUserName(e.target.value)}
                 autoComplete="off"
+                required
               />
               <label htmlFor="floatingInput">Your name</label>
             </div>
@@ -57,12 +61,13 @@ function HomePage() {
                 placeholder="Input"
                 onChange={(e) => setEMail(e.target.value)}
                 autoComplete="off"
+                required
               />
               <label htmlFor="floatingInput">Your EMail</label>
             </div>
           </Appear>
           <Appear>
-            <div className="form-floating input-frame pb-5">
+            <div className="form-floating input-frame pb-3">
               <textarea
                 className="input-field textarea form-floating form-control"
                 id="floatingInput"
@@ -74,6 +79,9 @@ function HomePage() {
               <label htmlFor="floatingInput">Enter text</label>
             </div>
           </Appear>
+          <Reveal>
+            <button className="mb-5" type="submit">Submit</button>
+          </Reveal>
           {/* <input
               style={{
                 height: "400px",
