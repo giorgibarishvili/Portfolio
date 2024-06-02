@@ -7,10 +7,13 @@ import { ReactComponent as Programmer } from "./images/computer-programmer.svg";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 function HomePage() {
+  const { t } = useTranslation();
   const [messageBox, setMessageBox] = useState("");
   const [userName, setUserName] = useState("");
   const [eMail, setEMail] = useState("");
-  const { t } = useTranslation();
+  const [eMailTouched, setEmailTouched] = useState(false);
+  const [userNameTouched, setUserNameTouched] = useState(false);
+  const [messageBoxTouched, setMessageBoxTouched] = useState(false);
   return (
     <div className="container main">
       {/* <EmblaCarousel /> */}
@@ -31,56 +34,88 @@ function HomePage() {
           className="me-5 align-items-center d-flex"
           //aq gavcherdi
         >
-          lets connect <br />
-          my email is asdas@aSd,.asr
+          <Appear>
+            lets connect <br />
+            my email is asdas@aSd,.asr
+          </Appear>
         </div>
         <form className="ms-5">
-          <Appear>
+          <Reveal>
             <div className="form-floating input-frame pb-5">
               <input
                 type="text"
-                className={"form-control"}
+                className={`form-control${
+                  userNameTouched && !userName ? " is-invalid" : ""
+                }`}
                 id="floatingInput"
                 value={userName}
-                placeholder="Input"
+                placeholder=""
                 onChange={(e) => setUserName(e.target.value)}
+                onBlur={() => setUserNameTouched(true)}
                 autoComplete="off"
                 required
               />
               <label htmlFor="floatingInput">Your name</label>
+              {userNameTouched && !userName && (
+                <span class="text-danger error-validation-text">
+                  This field is mandatory
+                </span>
+              )}
             </div>
-          </Appear>
+          </Reveal>
 
-          <Appear>
+          <Reveal>
             <div className="form-floating input-frame pb-5">
               <input
                 type="text"
-                className={"form-control"}
+                className={`form-control${
+                  eMailTouched && !eMail ? " is-invalid" : ""
+                }`}
                 id="floatingInput"
                 value={eMail}
-                placeholder="Input"
+                placeholder=""
                 onChange={(e) => setEMail(e.target.value)}
+                onBlur={() => setEmailTouched(true)}
                 autoComplete="off"
                 required
               />
               <label htmlFor="floatingInput">Your EMail</label>
+              {eMailTouched && !eMail && (
+                <span class="text-danger error-validation-text">
+                  This field is mandatory
+                </span>
+              )}
             </div>
-          </Appear>
-          <Appear>
+          </Reveal>
+          <Reveal>
             <div className="form-floating input-frame pb-3">
               <textarea
-                className="input-field textarea form-floating form-control"
+                className={`input-field textarea form-floating form-control ${
+                  messageBoxTouched && !messageBox ? " is-invalid" : ""
+                }`}
                 id="floatingInput"
-                placeholder={t("post")}
+                placeholder=""
                 value={messageBox}
                 onChange={(e) => setMessageBox(e.target.value)}
+                onBlur={() => setMessageBoxTouched(true)}
                 required
               ></textarea>
               <label htmlFor="floatingInput">Enter text</label>
+              {messageBoxTouched && !messageBox && (
+                <span class="text-danger error-validation-text">
+                  This field is mandatory
+                </span>
+              )}
             </div>
-          </Appear>
+          </Reveal>
           <Reveal>
-            <button className="mb-5" type="submit">Submit</button>
+            <button
+              className="mb-5"
+              type="submit"
+              disabled={!eMail || !userName || !messageBox}
+            >
+              Submit
+            </button>
           </Reveal>
           {/* <input
               style={{
