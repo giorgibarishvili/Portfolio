@@ -9,7 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 function Navbar() {
   const { t } = useTranslation();
   const location = useLocation();
-  
+
   const [lang, setLang] = useState("en");
   function changeBetweenLanguages() {
     const newLang = lang === "en" ? "ka" : "en";
@@ -27,6 +27,9 @@ function Navbar() {
         break;
       case "/About":
         setActiveButton("about");
+        break;
+      case "/Projects":
+        setActiveButton("projects");
         break;
       default:
         setActiveButton("");
@@ -59,12 +62,14 @@ function Navbar() {
             About
           </Button>
         </Link>
-        <Button
-          className={`me-3 ${activeButton === "projects" ? "active" : ""}`}
-          onClick={() => handleButtonClick("projects")}
-        >
-          Projects
-        </Button>
+        <Link to="/Projects">
+          <Button
+            className={`me-3 ${activeButton === "projects" ? "active" : ""}`}
+            onClick={() => handleButtonClick("projects")}
+          >
+            Projects
+          </Button>
+        </Link>
         <a
           href="portfolio/src/images/Giorgi Barishvili.pdf"
           download="Giorgi Barishvili CV"
@@ -75,7 +80,7 @@ function Navbar() {
       </div>
       <div className="asd me-5">
         <Button onClick={changeBetweenLanguages}>{t("language")}</Button>
-        
+
         <a
           href="https://github.com/giorgibarishvili"
           target="_blank"

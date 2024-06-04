@@ -1,11 +1,17 @@
-import { EmblaCarousel } from "./components/Embla/Carousel";
 import { Fade } from "react-awesome-reveal";
-import "./styles/Homepage.css";
-import Appear from "./components/animations/Appear";
-import Reveal from "./components/animations/Reveal";
-import { ReactComponent as Programmer } from "./images/computer-programmer.svg";
+import "../styles/Homepage.css";
+import Appear from "./animations/Appear";
+import Reveal from "./animations/Reveal";
+import { ReactComponent as Programmer } from "../images/computer-programmer.svg";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { motion } from "framer-motion";
+
+const pageTransition = {
+  in: { opacity: 1, x: 0 },
+  out: { opacity: 0, x: "-100%" },
+};
+
 function HomePage() {
   const { t } = useTranslation();
   const [messageBox, setMessageBox] = useState("");
@@ -15,8 +21,14 @@ function HomePage() {
   const [userNameTouched, setUserNameTouched] = useState(false);
   const [messageBoxTouched, setMessageBoxTouched] = useState(false);
   return (
-    <div className="container main">
-      {/* <EmblaCarousel /> */}
+    <motion.div
+      className="container main"
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={pageTransition}
+      transition={{ duration: 0.5 }}
+    >
       <div className="who-am-i mt-5 mb-5">
         <div className="greetings">
           <Appear>
@@ -132,7 +144,7 @@ function HomePage() {
             ></input> */}
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 export default HomePage;
