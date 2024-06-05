@@ -1,14 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../styles/Navbar.css";
 import Button from "./Button.js";
 import i18n from "./i18n/i18n";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as GithubLogo } from "../images/github-mark-white.svg";
 import { ReactComponent as Linkedin } from "../images/icons8-linkedin.svg";
+import {ReactComponent as Georgian} from "../images/GeorgiaFlag.svg";
+import {ReactComponent as Kingdom} from "../images/UnitedKingdomFlag.svg";
+import { ReactComponent as DownArrow } from "../images/chevron-down.svg";
+
 import { Link, useLocation } from "react-router-dom";
 function Navbar() {
   const { t } = useTranslation();
   const location = useLocation();
+  const dropdownRef = useRef(null);
 
   const [lang, setLang] = useState("en");
   function changeBetweenLanguages() {
@@ -16,7 +21,11 @@ function Navbar() {
     setLang(newLang);
     i18n.changeLanguage(newLang);
   }
+  // useEffect(() => {
+  //   localStorage.setItem("lang", lang);
+  // }, [lang]);
   const [activeButton, setActiveButton] = useState("");
+  const [showLang, setShowLang] = useState(false);
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
@@ -40,7 +49,18 @@ function Navbar() {
     setActiveButtonBasedOnPath(location.pathname);
   }, [location.pathname]);
 
-  // const [itsOn, setItsOn] = useState(false);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowLang(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   return (
     <div className="navbar container-fluid">
@@ -49,9 +69,8 @@ function Navbar() {
           <Button
             className={`me-3 ${activeButton === "home" ? "active" : ""}`}
             onClick={() => handleButtonClick("home")}
-            // onClick={() => setItsOn(!itsOn)}
           >
-            Home
+            {t("home")}
           </Button>
         </Link>
         <Link to="/About">
@@ -59,7 +78,7 @@ function Navbar() {
             className={`me-3 ${activeButton === "about" ? "active" : ""}`}
             onClick={() => handleButtonClick("about")}
           >
-            About
+            {t("about")}
           </Button>
         </Link>
         <Link to="/Projects">
@@ -67,7 +86,7 @@ function Navbar() {
             className={`me-3 ${activeButton === "projects" ? "active" : ""}`}
             onClick={() => handleButtonClick("projects")}
           >
-            Projects
+            {t("projects")}
           </Button>
         </Link>
         <a
@@ -79,7 +98,44 @@ function Navbar() {
         </a>
       </div>
       <div className="asd me-5">
-        <Button onClick={changeBetweenLanguages}>{t("language")}</Button>
+        {/* <Button onClick={changeBetweenLanguages}>{t("language")}</Button> */}
+
+        <div className="dropdown me-3" ref={dropdownRef}>
+          <button
+            className="dropbtn"
+            onClick={() => setShowLang((item) => !item)}
+          >
+            {lang !== "ka" ? (
+              <Kingdom className="me-2" />
+            ) : (
+              <Georgian className="me-2" />
+            )}
+            {lang === "ka" ? "ქარ" : "Eng"}
+            <DownArrow className="ms-3" />
+          </button>
+          {showLang && (
+            <div
+              className="dropdown-content"
+              style={{ minWidth: "130px", marginRight: "-4px" }}
+            >
+              <div
+                className="text-center"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setShowLang(false);
+                  changeBetweenLanguages();
+                }}
+              >
+                {lang === "ka" ? (
+                  <Kingdom className="me-2" />
+                ) : (
+                  <Georgian className="me-2" />
+                )}
+                {lang !== "ka" ? "ქარ" : "Eng"}
+              </div>
+            </div>
+          )}
+        </div>
 
         <a
           href="https://github.com/giorgibarishvili"

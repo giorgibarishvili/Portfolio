@@ -1,4 +1,4 @@
-import { Fade } from "react-awesome-reveal";
+// import { Fade } from "react-awesome-reveal";
 import "../styles/Homepage.css";
 import Appear from "./animations/Appear";
 import Reveal from "./animations/Reveal";
@@ -6,6 +6,7 @@ import { ReactComponent as Programmer } from "../images/computer-programmer.svg"
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import ModalPop from "./ModalPop";
 
 const pageTransition = {
   in: { opacity: 1, x: 0 },
@@ -20,6 +21,7 @@ function HomePage() {
   const [eMailTouched, setEmailTouched] = useState(false);
   const [userNameTouched, setUserNameTouched] = useState(false);
   const [messageBoxTouched, setMessageBoxTouched] = useState(false);
+  const [onClose, setOnClose] = useState(false);
   return (
     <motion.div
       className="container main"
@@ -41,14 +43,44 @@ function HomePage() {
           <Programmer />
         </Reveal>
       </div>
+      <button onClick={() => setOnClose(true)}>modal</button>
+      {onClose && (
+        <ModalPop onClose={setOnClose} size={"md"}>
+          <div className="row text-center">
+            <div className="col-12 mx-auto">
+              <div className="visit-asked mt-5">{t("something")}</div>
+              <div className="mx-auto mt-5 mb-3 d-flex justify-content-center">
+                <div className="col-md-6 d-flex justify-content-end">
+                  <button
+                    className="no-btn me-3"
+                    onClick={() => setOnClose(false)}
+                  >
+                    {t("no")}
+                  </button>
+                </div>
+                <div className="col-md-6 d-flex ">
+                  <button
+                    className="yes-btn"
+                    onClick={() => {
+                      setOnClose(false);
+                    }}
+                  >
+                    {t("yes")}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ModalPop>
+      )}
       <div className="form d-flex">
         <div
           className="me-5 align-items-center d-flex"
-          //aq gavcherdi
+          style={{ width: "300px" }}
         >
           <Appear>
-            lets connect <br />
-            my email is asdas@aSd,.asr
+            {t("messageMe")} <br />
+            {t("myMail")} Barishili2001@gmail.com
           </Appear>
         </div>
         <form className="ms-5">
@@ -67,10 +99,10 @@ function HomePage() {
                 autoComplete="off"
                 required
               />
-              <label htmlFor="floatingInput">Your name</label>
+              <label htmlFor="floatingInput">{t("nameInput")}</label>
               {userNameTouched && !userName && (
                 <span class="text-danger error-validation-text">
-                  This field is mandatory
+                  {t("mandatory")}
                 </span>
               )}
             </div>
@@ -91,10 +123,10 @@ function HomePage() {
                 autoComplete="off"
                 required
               />
-              <label htmlFor="floatingInput">Your EMail</label>
+              <label htmlFor="floatingInput">{t("emailInput")}</label>
               {eMailTouched && !eMail && (
                 <span class="text-danger error-validation-text">
-                  This field is mandatory
+                  {t("mandatory")}
                 </span>
               )}
             </div>
@@ -112,36 +144,21 @@ function HomePage() {
                 onBlur={() => setMessageBoxTouched(true)}
                 required
               ></textarea>
-              <label htmlFor="floatingInput">Enter text</label>
+              <label htmlFor="floatingInput">{t("textInput")}</label>
               {messageBoxTouched && !messageBox && (
                 <span class="text-danger error-validation-text">
-                  This field is mandatory
+                  {t("mandatory")}
                 </span>
               )}
             </div>
           </Reveal>
-          <Reveal>
-            <button
-              className="mb-5"
-              type="submit"
-              disabled={!eMail || !userName || !messageBox}
-            >
-              Submit
-            </button>
-          </Reveal>
-          {/* <input
-              style={{
-                height: "400px",
-                width: "500px",
-                // margin: "auto",
-                backgroundColor: "black",
-                color: "white",
-              }}
-              //aq gavcherdi inputebis damatebaze
-              className={"form-control active-input mx-auto"}
-              value={messageBox}
-              onChange={(e) => setMessageBox(e.target.value)}
-            ></input> */}
+          <button
+            className="mb-5"
+            type="submit"
+            disabled={!eMail || !userName || !messageBox}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </motion.div>
