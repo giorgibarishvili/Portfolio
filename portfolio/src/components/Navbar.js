@@ -5,8 +5,8 @@ import i18n from "./i18n/i18n";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as GithubLogo } from "../images/github-mark-white.svg";
 import { ReactComponent as Linkedin } from "../images/icons8-linkedin.svg";
-import {ReactComponent as Georgian} from "../images/GeorgiaFlag.svg";
-import {ReactComponent as Kingdom} from "../images/UnitedKingdomFlag.svg";
+import  Georgian from "../images/GeorgiaFlag.svg";
+import  Kingdom from "../images/UnitedKingdomFlag.svg";
 import { ReactComponent as DownArrow } from "../images/chevron-down.svg";
 
 import { Link, useLocation } from "react-router-dom";
@@ -105,11 +105,12 @@ function Navbar() {
             className="dropbtn"
             onClick={() => setShowLang((item) => !item)}
           >
-            {lang !== "ka" ? (
+            <img width={"40px"} className="pe-2" src={lang !== "ka" ? Kingdom : Georgian} alt="" />
+            {/* {lang !== "ka" ? (
               <Kingdom className="me-2" />
             ) : (
               <Georgian className="me-2" />
-            )}
+            )} */}
             {lang === "ka" ? "ქარ" : "Eng"}
             <DownArrow className="ms-3" />
           </button>
@@ -126,11 +127,12 @@ function Navbar() {
                   changeBetweenLanguages();
                 }}
               >
-                {lang === "ka" ? (
+                <img className="pe-2" src={lang === "ka" ? Kingdom : Georgian} alt="" />
+                {/* {lang === "ka" ? (
                   <Kingdom className="me-2" />
                 ) : (
                   <Georgian className="me-2" />
-                )}
+                )} */}
                 {lang !== "ka" ? "ქარ" : "Eng"}
               </div>
             </div>

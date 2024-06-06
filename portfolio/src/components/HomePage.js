@@ -4,7 +4,7 @@ import Appear from "./animations/Appear";
 import Reveal from "./animations/Reveal";
 import { ReactComponent as Programmer } from "../images/computer-programmer.svg";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ModalPop from "./ModalPop";
 
@@ -14,6 +14,7 @@ const pageTransition = {
 };
 
 function HomePage() {
+  const modalRef = useRef(null);
   const { t } = useTranslation();
   const [messageBox, setMessageBox] = useState("");
   const [userName, setUserName] = useState("");
@@ -22,6 +23,18 @@ function HomePage() {
   const [userNameTouched, setUserNameTouched] = useState(false);
   const [messageBoxTouched, setMessageBoxTouched] = useState(false);
   const [onClose, setOnClose] = useState(false);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setOnClose(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalRef]);
   return (
     <motion.div
       className="container main"
@@ -45,7 +58,7 @@ function HomePage() {
       </div>
       <button onClick={() => setOnClose(true)}>modal</button>
       {onClose && (
-        <ModalPop onClose={setOnClose} size={"md"}>
+        <ModalPop onClose={setOnClose} size={"md"} ref={modalRef}>
           <div className="row text-center">
             <div className="col-12 mx-auto">
               <div className="visit-asked mt-5">{t("something")}</div>

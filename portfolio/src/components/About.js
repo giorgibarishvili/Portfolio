@@ -36,13 +36,17 @@ function About() {
       <div className="d-flex">
         <div className="me-5 about-me">Tech Skills</div>
         <div className="ms-5 ragaca-span">
-          While I'm constantly seeking to expand my skillset, these are the
-          technologies where I possess expertise.
+          <Appear>
+            While I'm constantly seeking to expand my skillset, these are the
+            technologies where I possess expertise.
+          </Appear>
           <br />
           <span>
-            HTML CSS JavaScript TypeScript ReactJS Redux Toolkit Formik Redux
-            Thunk API Yup Framer Motion Firebase REST API Tailwind CSS MUI Git
-            GitHub VS Code
+            <Appear>
+              HTML CSS JavaScript TypeScript ReactJS Redux Toolkit Formik Redux
+              Thunk API Yup Framer Motion Firebase REST API Tailwind CSS MUI Git
+              GitHub VS Code
+            </Appear>
           </span>
         </div>
       </div>

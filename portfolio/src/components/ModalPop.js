@@ -2,16 +2,18 @@ import { ModalBody, ModalHeader } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { ReactComponent as XCircleIcon } from "../images/x-circle.svg";
 import "../styles/Homepage.css";
+import { forwardRef } from "react";
 
-function ModalPop(props) {
+const ModalPop = forwardRef((props, ref) => {
   return (
     <Modal
-      className="corp-modal notice-request-modal"
-      show
-      centered
-      size={props.size}
-      scrollable
-    >
+    className="corp-modal notice-request-modal"
+    show
+    centered
+    size={props.size}
+    scrollable
+  >
+    <div ref={ref}>
       <ModalHeader style={{ background: "white", textAlign: "center" }}>
         <button
           className="corp-modal-x mt-3"
@@ -25,8 +27,9 @@ function ModalPop(props) {
           {props.children}
         </div>
       </ModalBody>
-    </Modal>
+    </div>
+  </Modal>
   );
-}
+});
 
 export default ModalPop;
