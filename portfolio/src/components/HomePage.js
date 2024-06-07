@@ -56,13 +56,44 @@ function HomePage() {
           <Programmer />
         </Reveal>
       </div>
-      <button onClick={() => setOnClose(true)}>modal</button>
+      <div className="mt-5 mb-5">
+        <div className="pt-5 mb-3">
+         <Appear>
+            This is my PORTFOLIO and in case you are wondering
+            <br />
+            how it was created, just click this button below!
+         </Appear>
+        </div>
+        <Reveal>
+          <button className="morph-btn" onClick={() => setOnClose(true)}>
+            modal
+          </button>
+        </Reveal>
+      </div>
       {onClose && (
-        <ModalPop onClose={setOnClose} size={"md"} ref={modalRef}>
+        <ModalPop onClose={setOnClose} size={"lg"} ref={modalRef}>
           <div className="row text-center">
             <div className="col-12 mx-auto">
-              <div className="visit-asked mt-5">{t("something")}</div>
-              <div className="mx-auto mt-5 mb-3 d-flex justify-content-center">
+              <div className="modal-text mt-1">
+                <div className="d-flex align-items-center ab-portfolio col-8">
+                  ზოგადად ჩემი უნარ-ჩვევები შეგიძლია ნახოთ "ჩემს შესახებ"
+                  გვერდზე, ან CV-ში, თუმცა აქ მინდა გითხრათ თუ რომელი
+                  ბიბლიოთეკები და ზოგადად რა ცოდნა გამოვიყენე ამ პორტფოლიოს
+                  შესაქმენლეად!
+                </div>
+                <ul className="col-4 frameworks-list">
+                  <li>Javascript</li>
+                  <li>React.js</li>
+                  <li>Redux</li>
+                  <li>bootstrap</li>
+                  <li>react-router-dom</li>
+                  <li>I18N</li>
+                  <li>react-awesome-reveal</li>
+                  <li>framer-motion</li>
+                  <li>embla-carousel-react</li>
+                </ul>
+              </div>
+              {/* <div className="mx-auto mt-5 mb-3 d-flex justify-content-center">
                 <div className="col-md-6 d-flex justify-content-end">
                   <button
                     className="no-btn me-3"
@@ -81,7 +112,7 @@ function HomePage() {
                     {t("yes")}
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </ModalPop>
@@ -166,7 +197,7 @@ function HomePage() {
             </div>
           </Reveal>
           <button
-            className="mb-5"
+            className="mb-5 morph-btn"
             type="submit"
             disabled={!eMail || !userName || !messageBox}
           >
