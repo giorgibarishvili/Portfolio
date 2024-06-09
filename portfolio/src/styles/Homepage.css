@@ -136,7 +136,7 @@
   overflow: hidden;
   border-radius: 50px;
   box-shadow: 5px 5px 5px 1px rgba(59, 101, 129, 0.9);
-  transition: transform 0.3s ease-in-out; /* Added transition for button push effect */
+  transition: transform 0.3s ease-in-out; 
 }
 
 .morph-btn::after {
@@ -146,7 +146,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../images/GeorgiaFlag.svg"); /* Assuming your flag image is in a folder named 'images' */
+  background-image: url("../images/GeorgiaFlag.svg");
   background-size: cover;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -156,10 +156,10 @@
   opacity: 0.3;
 }
 
-.morph-btn:active, /* Added styling for active state (simulates button press) */
+.morph-btn:active,
 .morph-btn:hover {
   transform: scale(
     0.95
-  ); /* Scales down the button slightly on hover and active states */
+  );
 }
 /* AQ GAVCHERDI */

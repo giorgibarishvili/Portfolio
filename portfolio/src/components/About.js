@@ -1,12 +1,15 @@
 import "../styles/About.css";
 import { motion } from "framer-motion";
 import Appear from "./animations/Appear";
+import { useTranslation } from "react-i18next";
 
 const pageTransition = {
   in: { opacity: 1, x: 0 },
   out: { opacity: 0, x: "-100%" },
 };
 function About() {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       className="container mt-5"
@@ -16,36 +19,34 @@ function About() {
       variants={pageTransition}
       transition={{ duration: 0.5 }}
     >
-      <div className="d-flex mb-5">
-        <div className="me-5 about-me">ABOUT ME</div>
+      <div className="d-flex mb-5 row">
+        <div className="me-5 about-me col-2">{t("aboutMe")}</div>
         <div className="ms-5 ragaca-span">
-          <Appear>
-            👋 I am a Student who is passionate about web development
-          </Appear>
+          <Appear>მოგესალმებით, მე ვარ Junior Front end დეველოპერი</Appear>
           <br />
-          <span>
+          <div>
             <Appear>
-              I discovered my passion for web development when I started
-              university, where I primarily delve into front-end development
-              using React and Next.js. However, I'm also eager to explore
-              technologies outside of front-end.
+              პროგრამირების შესწავლისას არჩევანი შევაჩერე ვებ-პროგრამირებაზე,
+              ჩემს უნარ-ჩვევებს რაც შეეხება - ვარ მიზანდასახული,
+              პასუხისმგებლიანი, გუნდში მუშაობის უნარიანი, განვითარებისკენ
+              მიმართული პიროვნება. 
             </Appear>
-          </span>
+          </div>
         </div>
       </div>
-      <div className="d-flex">
-        <div className="me-5 about-me">Tech Skills</div>
+      <div className="d-flex row">
+        <div className="me-5 about-me col-2">ტექნიკური უნარები</div>
         <div className="ms-5 ragaca-span">
           <Appear>
-            While I'm constantly seeking to expand my skillset, these are the
-            technologies where I possess expertise.
+            ასევე მაქვს "Waterfall" და "Agile" მეთოდოლოგიებთან მუშაობის გამოცდილება.
+            ყოველდღიურად განვითარების მიუხედავად ამ მომენტზე ვფლობ შემდეგ პროგრამირების ენებს/ბიბლიოთეკებს
           </Appear>
           <br />
           <span>
             <Appear>
-              HTML CSS JavaScript TypeScript ReactJS Redux Toolkit Formik Redux
-              Thunk API Yup Framer Motion Firebase REST API Tailwind CSS MUI Git
-              GitHub VS Code
+              HTML, CSS, JavaScript,  ReactJS, Redux,
+               API, Framer Motion, REST API, BOOTSTRAP, Git,
+              GitHub, VS Code, I18N, react-awesome-reveal, embla-carousel-react, SASS
             </Appear>
           </span>
         </div>
