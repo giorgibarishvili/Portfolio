@@ -23,6 +23,7 @@ function HomePage() {
   const [userNameTouched, setUserNameTouched] = useState(false);
   const [messageBoxTouched, setMessageBoxTouched] = useState(false);
   const [onClose, setOnClose] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -35,6 +36,38 @@ function HomePage() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [modalRef]);
+  function fromSubmited(event) {
+    event.preventDefault();
+    if (!eMail || !userName || !messageBox) {
+      setEmailTouched(true)
+      setUserNameTouched(true)
+      setMessageBoxTouched(true)
+      return
+    }
+    const formObj = {
+      msg: messageBox,
+      name: userName,
+      mail: eMail,
+    };
+    setIsLoading(true)
+    fetch(
+      "https://portfolio-1e2ea-default-rtdb.europe-west1.firebasedatabase.app/messages.json",
+      {
+        method: "POST",
+        body: JSON.stringify(formObj),
+      }
+    ).then(({ ok }) => {
+      setIsLoading(false)
+      if (ok) {
+        setEMail("");
+        setUserName("");
+        setMessageBox("");
+        setMessageBoxTouched("");
+        setUserNameTouched("");
+        setEmailTouched("");
+      }
+    });
+  }
   return (
     <motion.div
       className="container main"
@@ -58,11 +91,11 @@ function HomePage() {
       </div>
       <div className="mt-5 mb-5">
         <div className="pt-5 mb-3">
-         <Appear>
+          <Appear>
             This is my PORTFOLIO and in case you are wondering
             <br />
             how it was created, just click this button below!
-         </Appear>
+          </Appear>
         </div>
         <Reveal>
           <button className="morph-btn" onClick={() => setOnClose(true)}>
@@ -139,13 +172,13 @@ function HomePage() {
                 value={userName}
                 placeholder=""
                 onChange={(e) => setUserName(e.target.value)}
-                onBlur={() => setUserNameTouched(true)}
+                // onBlur={() => setUserNameTouched(true)}
                 autoComplete="off"
                 required
               />
               <label htmlFor="floatingInput">{t("nameInput")}</label>
               {userNameTouched && !userName && (
-                <span class="text-danger error-validation-text">
+                <span className="text-danger error-validation-text">
                   {t("mandatory")}
                 </span>
               )}
@@ -163,13 +196,13 @@ function HomePage() {
                 value={eMail}
                 placeholder=""
                 onChange={(e) => setEMail(e.target.value)}
-                onBlur={() => setEmailTouched(true)}
+                // onBlur={() => setEmailTouched(true)}
                 autoComplete="off"
                 required
               />
               <label htmlFor="floatingInput">{t("emailInput")}</label>
               {eMailTouched && !eMail && (
-                <span class="text-danger error-validation-text">
+                <span className="text-danger error-validation-text">
                   {t("mandatory")}
                 </span>
               )}
@@ -185,12 +218,12 @@ function HomePage() {
                 placeholder=""
                 value={messageBox}
                 onChange={(e) => setMessageBox(e.target.value)}
-                onBlur={() => setMessageBoxTouched(true)}
+                // onBlur={() => setMessageBoxTouched(true)}
                 required
               ></textarea>
               <label htmlFor="floatingInput">{t("textInput")}</label>
               {messageBoxTouched && !messageBox && (
-                <span class="text-danger error-validation-text">
+                <span className="text-danger error-validation-text">
                   {t("mandatory")}
                 </span>
               )}
@@ -199,9 +232,18 @@ function HomePage() {
           <button
             className="mb-5 morph-btn"
             type="submit"
-            disabled={!eMail || !userName || !messageBox}
+            // disabled={!eMail || !userName || !messageBox}
+            onClick={fromSubmited}
           >
-            Submit
+            {isLoading ? (
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>

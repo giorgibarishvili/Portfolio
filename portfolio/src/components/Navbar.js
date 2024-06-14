@@ -5,9 +5,11 @@ import i18n from "./i18n/i18n";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as GithubLogo } from "../images/github-mark-white.svg";
 import { ReactComponent as Linkedin } from "../images/icons8-linkedin.svg";
-import  Georgian from "../images/GeorgiaFlag.svg";
-import  Kingdom from "../images/UnitedKingdomFlag.svg";
+import Georgian from "../images/GeorgiaFlag.svg";
+import Kingdom from "../images/UnitedKingdomFlag.svg";
 import { ReactComponent as DownArrow } from "../images/chevron-down.svg";
+import { ReactComponent as BurgerMenu } from "../images/bars-solid.svg";
+import { ReactComponent as CloseMark } from "../images/xmark-solid.svg";
 
 import { Link, useLocation } from "react-router-dom";
 function Navbar() {
@@ -26,6 +28,8 @@ function Navbar() {
   // }, [lang]);
   const [activeButton, setActiveButton] = useState("");
   const [showLang, setShowLang] = useState(false);
+  const [click, setClick] = useState(false);
+
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
@@ -63,9 +67,9 @@ function Navbar() {
   }, [dropdownRef]);
 
   return (
-    <div className="navbar container-fluid">
+    <div className={`nav-menu${click ? "active " : ""} navbar container-fluid`}>
       <div className="ms-5">
-        <Link to="/">
+        <Link to="/" className="">
           <Button
             className={`me-3 ${activeButton === "home" ? "active" : ""}`}
             onClick={() => handleButtonClick("home")}
@@ -105,14 +109,19 @@ function Navbar() {
             className="dropbtn"
             onClick={() => setShowLang((item) => !item)}
           >
-            <img width={"40px"} className="pe-2" src={lang !== "ka" ? Kingdom : Georgian} alt="" />
+            <img
+              width={"40px"}
+              className="pe-2"
+              src={lang !== "ka" ? Kingdom : Georgian}
+              alt=""
+            />
             {/* {lang !== "ka" ? (
               <Kingdom className="me-2" />
             ) : (
               <Georgian className="me-2" />
             )} */}
             {lang === "ka" ? "ქარ" : "Eng"}
-            <DownArrow className="ms-3" />
+            <DownArrow className="ms-1" />
           </button>
           {showLang && (
             <div
@@ -127,7 +136,11 @@ function Navbar() {
                   changeBetweenLanguages();
                 }}
               >
-                <img className="pe-2" src={lang === "ka" ? Kingdom : Georgian} alt="" />
+                <img
+                  className="pe-2"
+                  src={lang === "ka" ? Kingdom : Georgian}
+                  alt=""
+                />
                 {/* {lang === "ka" ? (
                   <Kingdom className="me-2" />
                 ) : (
@@ -155,6 +168,9 @@ function Navbar() {
         >
           <Linkedin />
         </a>
+      </div>
+      <div className="menu-icon" onClick={() => setClick(!click)}>
+        {click ? <CloseMark /> : <BurgerMenu />}
       </div>
     </div>
   );

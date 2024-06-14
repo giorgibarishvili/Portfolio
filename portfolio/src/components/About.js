@@ -51,6 +51,36 @@ function About() {
           </span>
         </div>
       </div>
+      <div className="d-flex mb-5 row">
+        <div className="me-5 about-me col-2">ganatleba</div>
+        <div className="ms-5 ragaca-span">
+          <Appear>მოგესალმებით, მე ვარ Junior Front end დეველოპერი</Appear>
+          <br />
+          <div>
+            <Appear>
+              პროგრამირების შესწავლისას არჩევანი შევაჩერე ვებ-პროგრამირებაზე,
+              ჩემს უნარ-ჩვევებს რაც შეეხება - ვარ მიზანდასახული,
+              პასუხისმგებლიანი, გუნდში მუშაობის უნარიანი, განვითარებისკენ
+              მიმართული პიროვნება. 
+            </Appear>
+          </div>
+        </div>
+      </div>
+      <div className="d-flex mb-5 row">
+        <div className="me-5 about-me col-2">samushao gamocdileba</div>
+        <div className="ms-5 ragaca-span">
+          <Appear>მოგესალმებით, მე ვარ Junior Front end დეველოპერი</Appear>
+          <br />
+          <div>
+            <Appear>
+              პროგრამირების შესწავლისას არჩევანი შევაჩერე ვებ-პროგრამირებაზე,
+              ჩემს უნარ-ჩვევებს რაც შეეხება - ვარ მიზანდასახული,
+              პასუხისმგებლიანი, გუნდში მუშაობის უნარიანი, განვითარებისკენ
+              მიმართული პიროვნება. 
+            </Appear>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 }
