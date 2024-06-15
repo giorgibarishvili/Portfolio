@@ -11,6 +11,8 @@ import HomePage from "./components/HomePage";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import { AnimatePresence } from "framer-motion";
+import { ToastContainer, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -29,6 +31,19 @@ function App() {
     <Router>
       <Navbar />
       <AnimatedRoutes />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       {/* <Routes>
           <Route path="/" exact Component={HomePage} />
           <Route path="/About" Component={About}/>

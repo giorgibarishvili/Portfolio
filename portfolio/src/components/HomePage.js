@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ModalPop from "./ModalPop";
+import { toast } from "react-toastify";
 
 const pageTransition = {
   in: { opacity: 1, x: 0 },
@@ -39,17 +40,18 @@ function HomePage() {
   function fromSubmited(event) {
     event.preventDefault();
     if (!eMail || !userName || !messageBox) {
-      setEmailTouched(true)
-      setUserNameTouched(true)
-      setMessageBoxTouched(true)
-      return
+      setEmailTouched(true);
+      setUserNameTouched(true);
+      setMessageBoxTouched(true);
+      toast.error("გთხოვთ შეავსოთ ყველა ველი");
+      return;
     }
     const formObj = {
       msg: messageBox,
       name: userName,
       mail: eMail,
     };
-    setIsLoading(true)
+    setIsLoading(true);
     fetch(
       "https://portfolio-1e2ea-default-rtdb.europe-west1.firebasedatabase.app/messages.json",
       {
@@ -57,7 +59,7 @@ function HomePage() {
         body: JSON.stringify(formObj),
       }
     ).then(({ ok }) => {
-      setIsLoading(false)
+      setIsLoading(false);
       if (ok) {
         setEMail("");
         setUserName("");
@@ -65,6 +67,9 @@ function HomePage() {
         setMessageBoxTouched("");
         setUserNameTouched("");
         setEmailTouched("");
+        toast.success("მესიჯი წარმატებით გაიგზავნა");
+      } else {
+        toast.error("მესიჯი ვერ გაიგზავნა");
       }
     });
   }
